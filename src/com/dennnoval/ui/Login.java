@@ -43,7 +43,7 @@ public class Login extends javax.swing.JFrame {
 
     jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
     jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel1.setText("TOKO KOMPUTER");
+    jLabel1.setText("TOKO KOMPUTER ABC");
 
     jLabel2.setText("Username");
 
