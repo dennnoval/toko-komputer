@@ -1,6 +1,6 @@
 # Toko Komputer
 
-Java Netbeans Project to fulfill my college assignment in Pemrogramman Visual class
+Java Netbeans Project to fulfill my college assignment in Pemrograman Visual class
 
 Tools i've used :
 - Netbeans IDE 12.0
