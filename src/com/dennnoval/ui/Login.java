@@ -31,6 +31,7 @@ public class Login extends javax.swing.JFrame {
     jLabel5 = new javax.swing.JLabel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setResizable(false);
 
     jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
     jButton1.setText("Masuk");
@@ -108,7 +109,7 @@ public class Login extends javax.swing.JFrame {
     // if (new UserModel().validation(new User(username,password,"Admin"))) {
     if (username.equals("admin") && password.equals("1234")) {
       dispose();
-      AdminFrame admFrm = new AdminFrame();
+      Admin admFrm = new Admin();
       admFrm.setLocationRelativeTo(null);
       admFrm.setVisible(true);
     } else {
