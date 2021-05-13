@@ -5,7 +5,11 @@
  */
 package com.dennnoval.ui;
 
+import com.dennnoval.datamodel.BarangModel;
+import com.dennnoval.entity.Barang;
 import com.dennnoval.ui.tablemodel.AdminTableModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,9 +37,9 @@ public class FormBarang extends javax.swing.JFrame {
     jLabel2 = new javax.swing.JLabel();
     jLabel3 = new javax.swing.JLabel();
     jLabel4 = new javax.swing.JLabel();
-    jTextField1 = new javax.swing.JTextField();
-    jTextField2 = new javax.swing.JTextField();
-    jTextField3 = new javax.swing.JTextField();
+    kodeBrgTxt = new javax.swing.JTextField();
+    namaBrgTxt = new javax.swing.JTextField();
+    hargaBrgTxt = new javax.swing.JTextField();
     jButton1 = new javax.swing.JButton();
     jButton2 = new javax.swing.JButton();
     jButton3 = new javax.swing.JButton();
@@ -45,6 +49,8 @@ public class FormBarang extends javax.swing.JFrame {
     jScrollPane1 = new javax.swing.JScrollPane();
     jTable1 = new javax.swing.JTable();
     jLabel5 = new javax.swing.JLabel();
+    jLabel6 = new javax.swing.JLabel();
+    hargaBrgTxt1 = new javax.swing.JTextField();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setResizable(false);
@@ -83,11 +89,16 @@ public class FormBarang extends javax.swing.JFrame {
 
     jButton5.setText("Cari");
 
+    jTable1.setFont(new java.awt.Font(".SF NS Text", 0, 14)); // NOI18N
     jTable1.setModel(AdminTableModel.tableBarang());
+    jTable1.setRowHeight(30);
     jScrollPane1.setViewportView(jTable1);
 
     jLabel5.setFont(new java.awt.Font(".SF NS Text", 0, 14)); // NOI18N
     jLabel5.setText("Cari");
+
+    jLabel6.setFont(new java.awt.Font(".SF NS Text", 0, 14)); // NOI18N
+    jLabel6.setText("Stok");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -101,35 +112,35 @@ public class FormBarang extends javax.swing.JFrame {
           .addGroup(layout.createSequentialGroup()
             .addGap(16, 16, 16)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField4)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addGap(13, 13, 13))
               .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(layout.createSequentialGroup()
-                    .addComponent(jButton1)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton2)
-                    .addGap(31, 31, 31)
-                    .addComponent(jButton3)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton4))
-                  .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                      .addComponent(jLabel3)
-                      .addComponent(jLabel4)
-                      .addComponent(jLabel2))
-                    .addGap(27, 27, 27)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                      .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                      .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                      .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                  .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 13, Short.MAX_VALUE)))))
+                  .addComponent(jLabel3)
+                  .addComponent(jLabel4)
+                  .addComponent(jLabel2)
+                  .addComponent(jLabel6))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(kodeBrgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(namaBrgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(hargaBrgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(hargaBrgTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+              .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                  .addComponent(jLabel5)
+                  .addGap(18, 18, 18)
+                  .addComponent(jTextField4)
+                  .addGap(18, 18, 18)
+                  .addComponent(jButton5))
+                .addGroup(layout.createSequentialGroup()
+                  .addComponent(jButton1)
+                  .addGap(18, 18, 18)
+                  .addComponent(jButton2)
+                  .addGap(31, 31, 31)
+                  .addComponent(jButton3)
+                  .addGap(18, 18, 18)
+                  .addComponent(jButton4))))
+            .addGap(0, 13, Short.MAX_VALUE)))
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -140,16 +151,20 @@ public class FormBarang extends javax.swing.JFrame {
         .addGap(18, 18, 18)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel2)
-          .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(kodeBrgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(18, 18, 18)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(namaBrgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel3))
         .addGap(18, 18, 18)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(hargaBrgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel4))
         .addGap(18, 18, 18)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(hargaBrgTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabel6))
+        .addGap(36, 36, 36)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jButton1)
           .addComponent(jButton2)
@@ -161,8 +176,8 @@ public class FormBarang extends javax.swing.JFrame {
           .addComponent(jButton5)
           .addComponent(jLabel5))
         .addGap(18, 18, 18)
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(17, Short.MAX_VALUE))
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(21, Short.MAX_VALUE))
     );
 
     pack();
@@ -173,18 +188,26 @@ public class FormBarang extends javax.swing.JFrame {
   }//GEN-LAST:event_jTextField4ActionPerformed
 
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // TODO add your handling code here:
+    String kode = kodeBrgTxt.getText();
+    String nama = kodeBrgTxt.getText();
+    int harga = Integer.valueOf(kodeBrgTxt.getText());
+    int stok = Integer.valueOf(kodeBrgTxt.getText());
+    Barang brg = new Barang(kode, nama, harga, stok);
+    boolean isInserted = new BarangModel().create(brg);
+    if (isInserted) {
+      ((DefaultTableModel)jTable1.getModel()).addRow(new Object[]{
+        brg.getKode(), brg.getNama(), brg.getHarga(), brg.getStok()
+      });
+      JOptionPane.showMessageDialog(rootPane, "Tambah data berhasil!");
+    } else {
+      JOptionPane.showMessageDialog(rootPane, "Tambah data gagal!");
+    }
   }//GEN-LAST:event_jButton1ActionPerformed
 
   /**
    * @param args the command line arguments
    */
   public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
     try {
       for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
         if ("Nimbus".equals(info.getName())) {
@@ -206,6 +229,8 @@ public class FormBarang extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JTextField hargaBrgTxt;
+  private javax.swing.JTextField hargaBrgTxt1;
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton3;
@@ -216,11 +241,11 @@ public class FormBarang extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel5;
+  private javax.swing.JLabel jLabel6;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JTable jTable1;
-  private javax.swing.JTextField jTextField1;
-  private javax.swing.JTextField jTextField2;
-  private javax.swing.JTextField jTextField3;
   private javax.swing.JTextField jTextField4;
+  private javax.swing.JTextField kodeBrgTxt;
+  private javax.swing.JTextField namaBrgTxt;
   // End of variables declaration//GEN-END:variables
 }
