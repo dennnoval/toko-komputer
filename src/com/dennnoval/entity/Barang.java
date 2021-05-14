@@ -32,6 +32,6 @@ public class Barang implements Serializable {
   }
   
   public int getStok() {
-    return harga;
+    return stok;
   }
 }
