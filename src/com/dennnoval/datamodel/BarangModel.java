@@ -68,7 +68,7 @@ public class BarangModel implements CRUD<Barang> {
   @Override
   public boolean update(Barang brg) {
     try {
-      ps = c.prepareStatement("UPDATE "+TABLE_NAME+" SET (nama=?, harga=?, stok=?) WHERE kode=?");
+      ps = c.prepareStatement("UPDATE "+TABLE_NAME+" SET nama=?, harga=?, stok=? WHERE kode=?");
       ps.setString(1, brg.getNama());
       ps.setInt(2, brg.getHarga());
       ps.setInt(3, brg.getStok());

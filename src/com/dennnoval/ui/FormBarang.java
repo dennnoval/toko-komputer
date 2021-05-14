@@ -9,7 +9,9 @@ import com.dennnoval.datamodel.BarangModel;
 import com.dennnoval.entity.Barang;
 import com.dennnoval.ui.tablemodel.AdminTableModel;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -40,17 +42,17 @@ public class FormBarang extends javax.swing.JFrame {
     kodeBrgTxt = new javax.swing.JTextField();
     namaBrgTxt = new javax.swing.JTextField();
     hargaBrgTxt = new javax.swing.JTextField();
-    jButton1 = new javax.swing.JButton();
-    jButton2 = new javax.swing.JButton();
-    jButton3 = new javax.swing.JButton();
-    jButton4 = new javax.swing.JButton();
-    jTextField4 = new javax.swing.JTextField();
+    simpanBtn = new javax.swing.JButton();
+    editBtn = new javax.swing.JButton();
+    hapusBtn = new javax.swing.JButton();
+    clearBtn = new javax.swing.JButton();
+    cariTxt = new javax.swing.JTextField();
     jButton5 = new javax.swing.JButton();
     jScrollPane1 = new javax.swing.JScrollPane();
     jTable1 = new javax.swing.JTable();
     jLabel5 = new javax.swing.JLabel();
     jLabel6 = new javax.swing.JLabel();
-    hargaBrgTxt1 = new javax.swing.JTextField();
+    stokBrgTxt = new javax.swing.JTextField();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setResizable(false);
@@ -68,30 +70,64 @@ public class FormBarang extends javax.swing.JFrame {
     jLabel4.setFont(new java.awt.Font(".SF NS Text", 0, 14)); // NOI18N
     jLabel4.setText("Harga Barang");
 
-    jButton1.setText("SIMPAN");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
+    simpanBtn.setText("SIMPAN");
+    simpanBtn.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+        simpanBtnActionPerformed(evt);
       }
     });
 
-    jButton2.setText("EDIT");
-
-    jButton3.setText("HAPUS");
-
-    jButton4.setText("CLEAR");
-
-    jTextField4.addActionListener(new java.awt.event.ActionListener() {
+    editBtn.setText("EDIT");
+    editBtn.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jTextField4ActionPerformed(evt);
+        editBtnActionPerformed(evt);
+      }
+    });
+
+    hapusBtn.setText("HAPUS");
+    hapusBtn.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        hapusBtnActionPerformed(evt);
+      }
+    });
+
+    clearBtn.setText("CLEAR");
+    clearBtn.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        clearBtnActionPerformed(evt);
+      }
+    });
+
+    cariTxt.addInputMethodListener(new java.awt.event.InputMethodListener() {
+      public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+        cariTxtInputMethodTextChanged(evt);
+      }
+      public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+      }
+    });
+    cariTxt.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cariTxtActionPerformed(evt);
       }
     });
 
     jButton5.setText("Cari");
+    jButton5.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton5ActionPerformed(evt);
+      }
+    });
 
     jTable1.setFont(new java.awt.Font(".SF NS Text", 0, 14)); // NOI18N
-    jTable1.setModel(AdminTableModel.tableBarang());
+    jTable1.setModel(new AdminTableModel.TableBarang());
+    jTable1.setEditingColumn(0);
+    jTable1.setEditingRow(0);
     jTable1.setRowHeight(30);
+    jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTable1MouseClicked(evt);
+      }
+    });
     jScrollPane1.setViewportView(jTable1);
 
     jLabel5.setFont(new java.awt.Font(".SF NS Text", 0, 14)); // NOI18N
@@ -123,23 +159,23 @@ public class FormBarang extends javax.swing.JFrame {
                   .addComponent(kodeBrgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addComponent(namaBrgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addComponent(hargaBrgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(hargaBrgTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                  .addComponent(stokBrgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
               .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                   .addComponent(jLabel5)
                   .addGap(18, 18, 18)
-                  .addComponent(jTextField4)
+                  .addComponent(cariTxt)
                   .addGap(18, 18, 18)
                   .addComponent(jButton5))
                 .addGroup(layout.createSequentialGroup()
-                  .addComponent(jButton1)
+                  .addComponent(simpanBtn)
                   .addGap(18, 18, 18)
-                  .addComponent(jButton2)
+                  .addComponent(editBtn)
                   .addGap(31, 31, 31)
-                  .addComponent(jButton3)
+                  .addComponent(hapusBtn)
                   .addGap(18, 18, 18)
-                  .addComponent(jButton4))))
+                  .addComponent(clearBtn))))
             .addGap(0, 13, Short.MAX_VALUE)))
         .addContainerGap())
     );
@@ -162,20 +198,20 @@ public class FormBarang extends javax.swing.JFrame {
           .addComponent(jLabel4))
         .addGap(18, 18, 18)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(hargaBrgTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(stokBrgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel6))
         .addGap(36, 36, 36)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jButton1)
-          .addComponent(jButton2)
-          .addComponent(jButton3)
-          .addComponent(jButton4))
-        .addGap(18, 18, 18)
+          .addComponent(simpanBtn)
+          .addComponent(editBtn)
+          .addComponent(hapusBtn)
+          .addComponent(clearBtn))
+        .addGap(30, 30, 30)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(cariTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jButton5)
           .addComponent(jLabel5))
-        .addGap(18, 18, 18)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap(21, Short.MAX_VALUE))
     );
@@ -183,15 +219,15 @@ public class FormBarang extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+  private void cariTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariTxtActionPerformed
     // TODO add your handling code here:
-  }//GEN-LAST:event_jTextField4ActionPerformed
+  }//GEN-LAST:event_cariTxtActionPerformed
 
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  private void simpanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanBtnActionPerformed
     String kode = kodeBrgTxt.getText();
-    String nama = kodeBrgTxt.getText();
-    int harga = Integer.valueOf(kodeBrgTxt.getText());
-    int stok = Integer.valueOf(kodeBrgTxt.getText());
+    String nama = namaBrgTxt.getText();
+    int harga = Integer.valueOf(hargaBrgTxt.getText());
+    int stok = Integer.valueOf(stokBrgTxt.getText());
     Barang brg = new Barang(kode, nama, harga, stok);
     boolean isInserted = new BarangModel().create(brg);
     if (isInserted) {
@@ -202,7 +238,74 @@ public class FormBarang extends javax.swing.JFrame {
     } else {
       JOptionPane.showMessageDialog(rootPane, "Tambah data gagal!");
     }
-  }//GEN-LAST:event_jButton1ActionPerformed
+  }//GEN-LAST:event_simpanBtnActionPerformed
+
+  private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    int row = jTable1.getSelectedRow();
+    String kode = jTable1.getValueAt(row, 0).toString();
+    String nama = jTable1.getValueAt(row, 1).toString();
+    String harga = jTable1.getValueAt(row, 2).toString();
+    String stok = jTable1.getValueAt(row, 3).toString();
+    kodeBrgTxt.setText(kode);
+    namaBrgTxt.setText(nama);
+    hargaBrgTxt.setText(harga);
+    stokBrgTxt.setText(stok);
+  }//GEN-LAST:event_jTable1MouseClicked
+
+  private void hapusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusBtnActionPerformed
+    String kode = kodeBrgTxt.getText();
+    String nama = namaBrgTxt.getText();
+    int harga = Integer.valueOf(hargaBrgTxt.getText());
+    int stok = Integer.valueOf(stokBrgTxt.getText());
+    Barang brg = new Barang(kode, nama, harga, stok);
+    boolean isDeleted = new BarangModel().delete(brg);
+    if (isDeleted) {
+      int row = jTable1.getSelectedRow();
+      ((DefaultTableModel)jTable1.getModel()).removeRow(row);
+      JOptionPane.showMessageDialog(rootPane, "Hapus data berhasil!");
+    } else {
+      JOptionPane.showMessageDialog(rootPane, "Hapus data gagal!");
+    }
+  }//GEN-LAST:event_hapusBtnActionPerformed
+
+  private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+    String kode = kodeBrgTxt.getText();
+    String nama = namaBrgTxt.getText();
+    int harga = Integer.valueOf(hargaBrgTxt.getText());
+    int stok = Integer.valueOf(stokBrgTxt.getText());
+    Barang brg = new Barang(kode, nama, harga, stok);
+    boolean isUpdated = new BarangModel().update(brg);
+    if (isUpdated) {
+      int row = jTable1.getSelectedRow();
+      jTable1.setValueAt(brg.getKode(), row, 0);
+      jTable1.setValueAt(brg.getNama(), row, 1);
+      jTable1.setValueAt(brg.getHarga(), row, 2);
+      jTable1.setValueAt(brg.getStok(), row, 3);
+      JOptionPane.showMessageDialog(rootPane, "Edit data berhasil!");
+    } else {
+      JOptionPane.showMessageDialog(rootPane, "Edit data gagal!");
+    }
+  }//GEN-LAST:event_editBtnActionPerformed
+
+  private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
+    kodeBrgTxt.setText("");
+    namaBrgTxt.setText("");
+    hargaBrgTxt.setText("");
+    stokBrgTxt.setText("");
+  }//GEN-LAST:event_clearBtnActionPerformed
+
+  private void cariTxtInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_cariTxtInputMethodTextChanged
+    // TODO add your handling code here:
+  }//GEN-LAST:event_cariTxtInputMethodTextChanged
+
+  private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    String filterText = cariTxt.getText();
+    TableRowSorter<AdminTableModel.TableBarang> sorter = new TableRowSorter<>((AdminTableModel.TableBarang)jTable1.getModel());
+    RowFilter<AdminTableModel.TableBarang, Object> rf;
+    rf = RowFilter.regexFilter(filterText, 1);
+    sorter.setRowFilter(rf);
+    jTable1.setRowSorter(sorter);
+  }//GEN-LAST:event_jButton5ActionPerformed
 
   /**
    * @param args the command line arguments
@@ -229,12 +332,11 @@ public class FormBarang extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JTextField cariTxt;
+  private javax.swing.JButton clearBtn;
+  private javax.swing.JButton editBtn;
+  private javax.swing.JButton hapusBtn;
   private javax.swing.JTextField hargaBrgTxt;
-  private javax.swing.JTextField hargaBrgTxt1;
-  private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton2;
-  private javax.swing.JButton jButton3;
-  private javax.swing.JButton jButton4;
   private javax.swing.JButton jButton5;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
@@ -244,8 +346,9 @@ public class FormBarang extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel6;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JTable jTable1;
-  private javax.swing.JTextField jTextField4;
   private javax.swing.JTextField kodeBrgTxt;
   private javax.swing.JTextField namaBrgTxt;
+  private javax.swing.JButton simpanBtn;
+  private javax.swing.JTextField stokBrgTxt;
   // End of variables declaration//GEN-END:variables
 }
