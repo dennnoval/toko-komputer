@@ -17,19 +17,26 @@ public class UserModel {
   private final Connection c = DBConfig.connect();
   private PreparedStatement ps;
   private final String TABLE_NAME = "User";
+  private User usr;
   
   public boolean validateLogin(User usr) {
     try {
-      ps = c.prepareStatement("SELECT * FROM "+TABLE_NAME+" WHERE username=? AND password=? AND type=?");
+      ps = c.prepareStatement("SELECT * FROM "+TABLE_NAME+" WHERE BINARY username=? AND BINARY password=?");
       ps.setString(1, usr.getUsername());
       ps.setString(2, usr.getPassword());
-      ps.setString(3, usr.getType());
-      if (ps.executeQuery().next()) {
+      ResultSet rs = ps.executeQuery();
+      if (rs.next()) {
+        this.usr = new User(rs.getString("username"), rs.getString("username"));
+        this.usr.setType(rs.getString("type"));
         return true;
       }
     } catch (SQLException ex) {
       Logger.getLogger(UserModel.class.getName()).log(Level.SEVERE, null, ex);
     }
     return false;
+  }
+  
+  public User getUser() {
+    return usr;
   }
 }
