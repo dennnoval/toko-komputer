@@ -9,12 +9,11 @@ import java.io.Serializable;
 public class User implements Serializable {
   private final String username;
   private final String password;
-  private final String type;
+  private String type;
 
-  public User(String username, String password, String type) {
+  public User(String username, String password) {
     this.username = username;
     this.password = password;
-    this.type = type;
   }
 
   public String getUsername() {
@@ -27,5 +26,9 @@ public class User implements Serializable {
 
   public String getType() {
     return type;
+  }
+  
+  public void setType(String type) {
+    this.type = type;
   }
 }
